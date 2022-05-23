@@ -1,0 +1,292 @@
+div {
+    font-size: inherit;
+    word-break: break-all;
+}
+
+a {
+    text-decoration: none;
+}
+
+p, h1, h2, h3, h4, h5 {
+    font-weight: normal;
+    margin: 0;
+}
+
+body {
+    background-color: #F5F5F5;
+}
+
+html, body, ul, li {
+    font-family: "Source Han Sans CN", Helvetica, Arial, sans-serif;
+    height: 100%;
+    width: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    /*font-size: 14px;*/
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-style: normal;
+    text-decoration: none;
+    border: none;
+    color: #333;
+    overflow: auto;
+    font-weight: normal;
+    /*font-family: "Microsoft Yahei";*/
+    line-height: 24px;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+}
+
+ul, li {
+    height: auto;
+}
+
+input {
+    font-family: "Source Han Sans CN", Helvetica, Arial, sans-serif;
+    color: #666;
+    /*font-size: 14px;*/
+    padding: 0;
+    border: none;
+    outline: none;
+}
+
+textarea {
+    background: #fff;
+    font-family: "Source Han Sans CN", Helvetica, Arial, sans-serif;
+    border-color: #ddd;
+    border-radius: 3px;
+    /*font-size: 14px;*/
+    color: #333;
+}
+
+.main-body {
+    /* 加上这个才会有当数据充满整个屏幕，可以进行上拉加载更多的操作 */
+    overflow: scroll;
+}
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    background-color: #F5F5F5;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #555;
+}
+
+input[type="button"], input[type="submit"], input[type="search"], input[type="reset"] {
+    -webkit-appearance: none;
+}
+
+textarea {
+    -webkit-appearance: none;
+}
+
+.fixbg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0
+}
+
+.clear:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.clear {
+    zoom: 1;
+}
+
+.back_img {
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.margin {
+    margin: 0 auto;
+}
+
+.fl {
+    float: left;
+    line-height: inherit;
+}
+
+.fr {
+    float: right;
+    line-height: inherit;
+}
+
+.btn {
+    border-radius: 3px;
+    background: #6c9;
+    color: #fff;
+    text-align: center;
+    line-height: 36px;
+    font-size: 14px
+}
+
+.btn_grey {
+    background: #bbb;
+}
+
+.btn_grey:hover,
+.btn_grey:active {
+    background: #aaa
+}
+
+.btn_main {
+    background: #0080ff;
+    color: #fff;
+}
+
+.btn_main:hover,
+.btn_main:active {
+    background: #06c
+}
+
+.btn_search {
+    color: #fff;
+    background-color: #f63;
+}
+
+.btn_search:hover,
+.btn_search:active {
+    background-color: #ff480b;
+}
+
+.btn_outline {
+    background: transparent;
+    color: #6c9;
+    border: 1px solid #6c9;
+}
+
+.ml {
+    margin-left: 10px
+}
+
+.mt {
+    margin-top: 10px
+}
+
+.mb {
+    margin-bottom: 10px
+}
+
+.mr {
+    margin-right: 10px
+}
+
+.bt {
+    border-top: 1px solid #e0e0e0
+}
+
+.bb {
+    border-bottom: 1px solid #e0e0e0
+}
+
+.img_circle {
+    border-radius: 50%;
+}
+
+.font_light {
+    color: #999
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/*弹窗pop*/
+.popbg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .1);
+    z-index: 12;
+}
+
+.pop {
+    position: fixed;
+    z-index: 13;
+    background: #fff;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, .05);
+    -moz-box-shadow: 0 0 2px 2px rgba(0, 0, 0, .05);
+    -webkit-box-shadow: 0 0 2px 2px rgba(0, 0, 0, .05);
+}
+
+.van-tabs__line {
+    background: #1da4f2
+}
+
+.flex_between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/*放大照片*/
+.bigImg-outer-div {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+}
+
+/*加载中*/
+.van-loading-control {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+}
+
+/*       *********  分割线  **************            */
+/*以下是这个项目的*/
+.listcard li {
+    float: left;
+    padding: 5px 10px;
+    border-bottom: solid 1px #f8f8f8;
+    font-size: 13px;
+    background: #fff;
+}
+
+.listcard li:nth-child(odd) {
+    background: #f2fcfc;
+}
+
+.cardline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

@@ -1,0 +1,70 @@
+.filter-date-pro {
+  display: inline-block;
+  .filter__wrap {
+    //height: 0.88rem;
+    //background-color: #fff;
+    //padding: 0 0.3rem;
+    display: flex;
+    align-items: center;
+    color: #555;
+    font-size: 0.32rem;
+    .filter__item {
+      font-size: 0.28rem;
+      //background-color: #f7f7f7;
+      //border-radius: 0.33rem;
+      //padding: 0.1rem 0.2rem;
+      white-space: nowrap;
+      border: 1px solid;
+      border-color: transparent transparent #999 transparent;
+      & + .filter__item {
+        margin-left: 0.4rem;
+      }
+      .filter__item--active {
+        //color: @primary-color;
+      }
+    }
+  }
+}
+
+.popup-body {
+  .top-header {
+    display: flex;
+    height: 0.88rem;
+    align-items: center;
+    justify-content: space-between;
+    & > div {
+      color: #595959;
+      font-size: 0.32rem;
+      padding: 0 0.32rem;
+    }
+    & > div:nth-child(2) {
+      color: @primary-color;
+    }
+  }
+
+  .date-type {
+    display: flex;
+    align-items: center;
+    padding: 0 0.3rem;
+    margin: 0.2rem 0 0.3rem;
+    .date-type__item {
+      flex: 1;
+      font-size: 0.28rem;
+      color: #595959;
+      background-color: #f7f7f7;
+      border-radius: 0.33rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 0.6rem;
+      transition: 0.3s all;
+      & + .date-type__item {
+        margin-left: 0.28rem;
+      }
+      &.date-type__item--active {
+        color: #fff;
+        background-color: @primary-color;
+      }
+    }
+  }
+}
