@@ -35,17 +35,17 @@ module.exports = {
 
   devServer: {
     // 配置代理
-    proxy: {
-      '/pdf_proxy': {
-        target: '',
-        pathRewrite: { '^/pdf_proxy': '' },
-        changeOrigin: true, // target是域名的话，需要这个参数
-        secure: false // 设置支持https协议的代理
-      }
-    },
-    overlay: {
-      warning: false,
-      errors: false
-    }
+    // proxy: {
+    //   '/pdf_proxy': {
+    //     target: '',
+    //     pathRewrite: { '^/pdf_proxy': '' },
+    //     changeOrigin: true, // target是域名的话，需要这个参数
+    //     secure: false // 设置支持https协议的代理
+    //   }
+    // },
+    // overlay: {
+    //   warning: false,
+    //   errors: false
+    // }
   }
 }

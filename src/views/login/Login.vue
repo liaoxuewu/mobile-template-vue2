@@ -22,7 +22,7 @@
 import { Toast } from 'vant'
 import api from '@/api/api'
 import constkey from '@/api/constkey'
-import { setLocalStorage } from '@/libs/modules/local-storage'
+import { setLocalStorage } from '@/plugins/modules/local-storage'
 import { mapMutations } from 'vuex'
 
 export default {

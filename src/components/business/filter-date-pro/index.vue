@@ -12,7 +12,6 @@
         <i class="fa fa-caret-down"></i>
       </div>
     </div>
-
     <van-popup v-model="visible.dateType" position="bottom" :lazy-render="false" get-container="body">
       <div class="popup-body">
         <div class="top-header">
@@ -144,14 +143,7 @@ export default {
               const year = this.dateColumns[yIndex]?.value
               const quarter = this.dateColumns[yIndex]?.children[qIndex]?.value
               const quarterLabel = this.dateColumns[yIndex]?.children[qIndex]?.text
-              params = computedDays(
-                this.value,
-                `${year}-${quarter
-                  .slice()
-                  .pop()
-                  .toString()
-                  .padStart(2, '0')}`
-              )
+              params = computedDays(this.value, `${year}-${quarter.slice().pop().toString().padStart(2, '0')}`)
               dateLabel = `${year}年${quarterLabel}`
               break
             }
@@ -171,9 +163,7 @@ export default {
               const day = this.dateColumns[yIndex]?.children[mIndex]?.children[dIndex]?.value
               params = computedDays(
                 this.value,
-                this.$dayjs(`${year}-${month}-${day}`)
-                  .add(1, 'day')
-                  .format('YYYY-MM-DD')
+                this.$dayjs(`${year}-${month}-${day}`).add(1, 'day').format('YYYY-MM-DD')
               )
               dateLabel = `${year}年${month}月${day}日`
               break
