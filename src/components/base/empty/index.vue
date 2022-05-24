@@ -48,7 +48,7 @@
 
 <script>
 export default {
-  name: 'empty',
+  name: 'g-empty',
   props: {
     description: {
       type: String,
