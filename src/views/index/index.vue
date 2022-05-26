@@ -43,12 +43,12 @@
       description="选择项目"
     />
     <van-loading type="spinner" class="van-loading-control" v-if="isShowLoading"></van-loading>
+    <g-tabbar :active="activeName"></g-tabbar>
   </div>
 </template>
 
 <script>
 import { Toast } from 'vant'
-import api from '@/api/index'
 import config from '../../../public/config'
 
 export default {
@@ -65,6 +65,7 @@ export default {
       },
       tabShow: false,
       isShowPersonInfo: false, // 操作人信息弹窗
+      activeName: '病历',
       areaList: [],
       dataList: [],
       imgIndex: 0

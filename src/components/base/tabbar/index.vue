@@ -4,8 +4,8 @@
       <van-tabbar-item v-for="(v, i) in urls" :key="i" @click="goToPage(v.url, i)">
         <span v-text="v.name"></span>
         <template #icon="props">
-          <img v-if="i == num" :src="require('../../../assets/img/tab_' + v.iconname + '_active.png')" />
-          <img v-else :src="require('../../../assets/img/tab_' + v.iconname + '.png')" />
+          <img v-if="i == num" :src="require('../../../assets/img/tab_' + v.iconName + '_active.png')" />
+          <img v-else :src="require('../../../assets/img/tab_' + v.iconName + '.png')" />
         </template>
       </van-tabbar-item>
       <!-- 更多菜单弹窗 -->
@@ -23,13 +23,13 @@ export default {
   data() {
     return {
       urls: [
-        { iconname: '', name: '', url: '' },
-        { iconname: 'more', name: '更多', url: '' }
+        { iconName: 'index', name: '', url: '' },
+        { iconName: 'detail', name: '', url: '' },
+        { iconName: 'user', name: '', url: '' },
+        { iconName: 'more', name: '更多', url: '' }
       ],
       num: 0,
-      moreMenu: [
-        { id: 0, name: '' },
-      ],
+      moreMenu: [{ id: 0, name: '' }],
       moreMenuShow: false
     }
   },
