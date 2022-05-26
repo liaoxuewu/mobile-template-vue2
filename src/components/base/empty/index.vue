@@ -58,7 +58,7 @@ export default {
 }
 </script>
 
-<style scoped lang="less">
+<style scoped lang="scss">
 .empty__wrap {
   display: flex;
   justify-content: center;

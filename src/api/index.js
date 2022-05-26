@@ -1,5 +1,4 @@
-import { requireAllModule } from '@/common/utils/common.js'
-import { requestParams } from './request.js'
+import { requireAllModule } from '@/utils/common.js'
 
 const apisModules = requireAllModule({
   requireContext: require.context('./modules/', false, /\.js$/),
@@ -26,6 +25,6 @@ export default {
   ...apisModules,
   install: Vue => {
     Vue.prototype.$api = apisModules
-    Vue.prototype.$requestParams = requestParams
+    // Vue.prototype.$requestParams = requestParams
   }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "in-hosp",
+  "name": "mobile-template-vue2",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -45,11 +45,12 @@
     "eslint-plugin-vue": "^9.0.1",
     "less-loader": "^7.3.0",
     "lib-flexible": "^0.3.2",
+    "node-sass": "^6.0.0",
     "postcss-px2rem-exclude": "^0.0.6",
     "prettier": "^2.5.1",
     "prettier-eslint": "^15.0.0",
     "sass": "^1.26.5",
-    "sass-loader": "^7.3.1",
+    "sass-loader": "^10.2.1",
     "style-loader": "^3.3.1",
     "vconsole": "^3.9.2",
     "vue-template-compiler": "^2.6.11",

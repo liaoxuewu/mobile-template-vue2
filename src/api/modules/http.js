@@ -1,24 +1,24 @@
-import request from './request'
+import { POST } from '@/api/request.js'
+import config from '../../../public/config'
 
-/**
- * @description: 获取列表
- * @param {*} doctcode
- * @return {*} 列表
- * {
-  "Code": 0,
-  "InfoMsg": "string",
-  "Rst_Data": [
-    {
-      "Hosp_Code": "string", // 机构号
+export default {
+  /**
+   * @description: api登录请求
+   * @param {*}
+   * @return {*} 请求响应promise
+   */
+  getData(
+    body = {
+      params: {},
+      data: {}
     }
-  ]
-}
- */
-export function GetInHospAreaList(body = { params: {}, data: {} }) {
-  return request({
-    url: '',
-    method: 'get',
-    ...body,
-    params: { ...body.params }
-  })
+  ) {
+    return POST({
+      url: config.baseUrl + '/getData',
+      ...body,
+      data: {
+        ...body.data
+      }
+    })
+  }
 }
