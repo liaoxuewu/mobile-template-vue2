@@ -12,8 +12,11 @@
       </div>
       <van-icon name="ellipsis" @click="menuShow = true" />
     </div>
-    <ul class="index-content" v-if="pData.length > 0">
-      <li v-for="(v, i) in pData" :key="i" @click="goToDetail(v)"></li>
+    <ul class="index-content" v-if="dataList.length">
+      <li v-for="(item, index) in dataList" :key="index" @click="goToDetail(item)">
+        <div>姓名：{{ item.name }}</div>
+        <div>年龄：{{ item.age }}</div>
+      </li>
     </ul>
     <div class="index-content" v-else style="text-align: center; font-size: 16px; margin-top: 30px">暂无数据</div>
     <!-- 菜单弹窗 -->
@@ -26,13 +29,10 @@
     </div>
     <van-popup class="operate-info" v-model="isShowPersonInfo">
       <div class="operate-info-item">
-        工号：<span>{{ userId }}</span>
+        工号：<span>{{ userInfo.id }}</span>
       </div>
       <div class="operate-info-item">
-        姓名：<span>{{ docName }}</span>
-      </div>
-      <div class="operate-info-item">
-        openID：<span>{{ openId }}</span>
+        姓名：<span>{{ userInfo.name }}</span>
       </div>
     </van-popup>
     <van-action-sheet
@@ -40,7 +40,7 @@
       :actions="areaList"
       @select="selectArea"
       cancel-text="取消"
-      description="选择科室"
+      description="选择项目"
     />
     <van-loading type="spinner" class="van-loading-control" v-if="isShowLoading"></van-loading>
   </div>
@@ -49,6 +49,7 @@
 <script>
 import { Toast } from 'vant'
 import api from '@/api/index'
+import config from '../../../public/config'
 
 export default {
   name: 'index',
@@ -57,182 +58,64 @@ export default {
       isShowLoading: false,
       searchText: '', // 搜索内容
       menuShow: false, // 菜单是否显示
-      code: '', // 企业号返回的code
-      agentId: '',
-      userCode: '',
-      openId: '',
-      userId: '',
+      appId: '',
+      userInfo: {
+        id: '',
+        name: ''
+      },
       tabShow: false,
       isShowPersonInfo: false, // 操作人信息弹窗
       areaList: [],
-      pData: [],
+      dataList: [],
       imgIndex: 0
     }
   },
   mounted() {
-    this.hospCode = config.hospCode
+    this.appId = config.appId
+    this.init()
   },
   methods: {
     /**
-     * 企业微信登录
+     * 初始化
      */
-    openWeChatFun() {
-      this.isShowLoading = true
-      let url = window.location.href
-      // url = "http://bi.lzszyyy.com:9802/?agentid=201000006&code=RFwznmZRlZ3wPqHxDfKT45M3kiBcn86nRAHsw8Igpk4&state=STATE#/ydcf/ydcf_index";
-      if (url.indexOf('agentid') > -1 && url.indexOf('code') > -1) {
-        if (url.indexOf('#') > -1) {
-          let arr = url.split('#')
-          if (arr[0].indexOf('?') > -1) {
-            let arr2 = arr[0].split('?')[1]
-            this.code = this.getQueryString(arr2, 'code')
-            let newAgentId = this.getQueryString(arr2, 'agentid')
-            console.log(newAgentId + '这是newAgentId')
-            // 判断code是否和上次一样
-            if (newAgentId.substr(newAgentId.length - 1, 1) === '/') {
-              this.agentId = newAgentId.substr(0, newAgentId.length - 1)
-            } else {
-              this.agentId = newAgentId
-            }
-            this.verifyToken(newAgentId)
-          }
-        }
-      } else {
-        // this.checkCodeFun();
-        // this.getAreaList()
-        this.isShowLoading = false
-        Toast({
-          message: '请使用企业微信登录',
-          duration: 1000
-        })
-      }
-    },
-    openDingTalkFun() {
-      console.log('钉钉调试开始')
-      // 钉钉sdk 初始化
-      // dd.ready参数为回调函数，在环境准备就绪时触发，jsapi的调用需要保证在该回调函数触发后调用，否则无效。
-      dd.ready(() => {
-        // 获取当前网页的url
-        // http://ding-web.lnexin.cn/?corpid=ding46a9582af5b7541b35c2fxxxxxxxxxx8f
-        console.log('初始化函数')
-        const currentUrl = document.location.toString()
-        console.log(currentUrl + 'currentUrl----')
-        // 解析url中包含的corpId
-        if (currentUrl.split('corpid=')[1]) {
-          const corpId = currentUrl.split('corpid=')[1]
-          console.log(corpId + 'corpId----')
-          // 使用SDK 获取免登授权码
-          dd.runtime.permission.requestAuthCode({
-            corpId: corpId,
-            onSuccess: result => {
-              this.code = result.code
-              console.log(this.code + 'code dingding----')
-              this.verifyToken('')
-              //请求我们服务端的登陆地址
-              // $.get("https://nethosp.mandalat.cn:9443/assistant/Author/CheckCode?code="+code+"&hospcode=wxey&systype=DD&agentid=1", function (response) {
-              //
-              // });
-            }
-          })
-        } else {
-          // this.checkCodeFun();
-          // this.getAreaList()
-          this.verifyToken('')
-          this.isShowLoading = false
-          // Toast({
-          //   message: '请使用钉钉登录',
-          //   duration: 1000
-          // })
-        }
-      })
-    },
-    verifyToken(newAgentId) {
-      let accessToken = sessionStorage.getItem('accessToken')
-      if (accessToken === null || accessToken === undefined || accessToken === '') {
-        console.log(this.code + '新code')
-        console.log(sessionStorage.getItem('code') + '缓存code')
-        if (this.code === sessionStorage.getItem('code')) {
-          // code和上次一样
-          window.location.href =
-            'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' +
-            config.appId +
-            '&redirect_uri=' +
-            config.indexUrl +
-            '&response_type=code&scope=SCOPE&agentid=' +
-            newAgentId +
-            '&state='
-          this.isShowLoading = false
-          // this.getAreaList();
-        } else {
-          // code和上次不一样
-          console.log('code和上次不一样')
-          sessionStorage.setItem('agentId', '')
-          sessionStorage.setItem('code', this.code)
-          this.checkCodeFun()
-        }
-      } else {
-        this.getAreaList()
+    init() {
+      try {
+        this.reset()
+        this.getDataList()
+      } catch (e) {
+        console.log(e)
+      } finally {
       }
     },
     /**
-     * 判断用户是否绑定账号
+     * 验证token
      */
-    checkCodeFun() {
-      if (config.sysType === 'DD') {
-        this.agentId = config.agentId
-      }
-      const baseParams = {
-        code: this.code,
-        hospcode: this.hospCode,
-        agentid: this.agentId,
-        systype: config.sysType // QYWX：企业微信 DD：钉钉
-      }
-      console.log(baseParams + 'checkcode函数baseParams')
-      // this.getAreaList()
-      api.login.CheckCode({ params: baseParams }).then(res => {})
+    verifyToken(newAgentId) {
+      let accessToken = sessionStorage.getItem('accessToken')
     },
+    selectArea() {},
     /**
      * 搜索函数
      */
     searchFun(content) {
-      const baseParams = {
-        hosp_code: this.hospCode,
-        areacode: this.areaCode,
-        search: content
-      }
-      GetInHospPatientLike({ params: baseParams }).then(res => {
-        this.pData = []
-      })
+      const baseParams = {}
     },
     /**
-     * 获取列表
+     * 获取数据
      */
-    getList() {
-      const baseParams = {
-        hosp_code: this.hospCode,
-        doct_code: this.userId
-      }
-    },
-    /**
-     * 企业微信登录时截取url中的code和agentid
-     */
-    getQueryString: function (url, name) {
-      if (url.indexOf('&') > -1) {
-        let arr = url.split('&')
-        for (let i = 0; i < arr.length; i++) {
-          if (arr[i].indexOf('=') > -1) {
-            let arr2 = arr[i].split('=')
-            if (arr2[0] == name) {
-              return arr2[1]
-            }
-          }
-        }
-      }
-      return false
+    getDataList() {
+      this.dataList = [
+        { name: '曹操', age: 18 },
+        { name: '刘备', age: 16 }
+      ]
     },
     clickPop() {
       this.isShowPersonInfo = true
     },
+    /**
+     * 重置
+     */
+    reset() {},
     /**
      * 跳转详情
      */
