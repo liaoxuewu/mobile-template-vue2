@@ -1,8 +1,8 @@
 export default {
   namespaced: true,
   state: {
-    baseUrl: getStorageSync('uni_base_url'), // 请求服务器地址
-    userInfo: getStorageSync('uni_user_info') // 登陆用户信息
+    baseUrl: localStorage.getItem('base_url'), // 请求服务器地址
+    userInfo: localStorage.getItem('user_info') // 登陆用户信息
   },
   getters: {
     // isTokenValid(state) {
@@ -20,22 +20,22 @@ export default {
     // 设置请求服务器地址到缓存
     SET_BASE_URL: (state, baseUrl) => {
       state.baseUrl = baseUrl
-      setStorageSync('uni_base_url', baseUrl)
+      localStorage.setItem('base_url', baseUrl)
     },
     // 移除缓存中的请求服务器地址
     REMOVE_BASE_URL: state => {
       state.baseUrl = ''
-      removeStorageSync('uni_base_url')
+      localStorage.removeItem('base_url')
     },
     // 设置登陆用户信息（含token）
     SET_USER_INFO: (state, userInfo) => {
       state.userInfo = userInfo
-      setStorageSync('uni_user_info', userInfo)
+      localStorage.setItem('user_info', userInfo)
     },
     // 移除登陆用户信息
     REMOVE_USER_INFO: state => {
       state.userInfo = ''
-      removeStorageSync('uni_user_info')
+      localStorage.removeItem('user_info')
     }
   },
   actions: {
