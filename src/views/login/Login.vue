@@ -45,6 +45,7 @@ export default {
      * @return {*}
      */
     loginSubmit() {
+      this.$router.push('/')
       this.isShowLoading = true
       try {
         this.login()

@@ -25,6 +25,19 @@ export default new Router({
       component: () => import('@/views/login/Login')
     },
     {
+      path: '/detail/Detail',
+      components: {
+        default: () => import('@/views/detail/Detail')
+      },
+      name: 'Detail',
+      meta: {
+        keepAlive: false,
+        showHeader: false,
+        title: '详情',
+        noAuth: false
+      }
+    },
+    {
       path: '/user/User',
       components: {
         default: () => import('@/views/user/User')
