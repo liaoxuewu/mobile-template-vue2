@@ -23,9 +23,9 @@ export default {
   data() {
     return {
       urls: [
-        { iconName: 'index', name: '', url: '' },
-        { iconName: 'detail', name: '', url: '' },
-        { iconName: 'user', name: '', url: '' },
+        { iconName: 'index', name: '首页', url: '' },
+        { iconName: 'detail', name: '详情', url: '' },
+        { iconName: 'user', name: '个人中心', url: '/user/User' },
         { iconName: 'more', name: '更多', url: '' }
       ],
       num: 0,

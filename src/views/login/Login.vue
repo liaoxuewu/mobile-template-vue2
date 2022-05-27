@@ -20,8 +20,7 @@
 
 <script type="text/javascript">
 import { Toast } from 'vant'
-import api from '@/api/api'
-import constkey from '@/api/constkey'
+import api from '@/api/index'
 import { setLocalStorage } from '@/plugins/modules/local-storage'
 import { mapMutations } from 'vuex'
 
