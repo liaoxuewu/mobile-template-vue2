@@ -9,9 +9,9 @@
         <input type="text" v-model="userName" placeholder="请输入用户名" maxlength="16" />
       </div>
       <div class="login-box">
-        <input :type="pwType ? 'password' : 'text'" maxlength="24" v-model="password" placeholder="请输入密码" />
-        <img src="../../assets/img/pwno.png" v-if="pwType" @click="pwType = false" />
-        <img src="../../assets/img/pwyes.png" v-else @click="pwType = true" />
+        <input :type="passwordType ? 'password' : 'text'" maxlength="24" v-model="password" placeholder="请输入密码" />
+        <img src="../../assets/img/password_hide.png" v-if="passwordType" @click="passwordType = false" />
+        <img src="../../assets/img/password_show.png" v-else @click="passwordType = true" />
       </div>
       <van-button size="large" type="primary" :loading="isShowLoading" @click="loginSubmit">登录 </van-button>
     </div>
@@ -32,7 +32,7 @@ export default {
       userName: '', // 登录名
       password: '', // 密码
       sysName: '', // 系统名称
-      pwType: true,
+      passwordType: true,
       isBack: false
     }
   },

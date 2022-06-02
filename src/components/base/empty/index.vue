@@ -1,8 +1,3 @@
-<!--
- * @Description: 无数据显示
- * @Author bianpengfei
- * @create 2021/5/14 23:33
- -->
 <template>
   <div class="empty__wrap">
     <svg

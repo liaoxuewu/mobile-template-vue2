@@ -1,10 +1,4 @@
 /**
- * @Description:
- * @Author liaoxuewu
- * @create 2022/01/04 14:41
- */
-
-/**
  * 自动化注册 需要模块
  * @param requireContext 语法require.context(目录,是否递归目录, 文件筛选条件)所有参数必须是直接字符串，变量无效。
  * @param exclude 只引入包括的模块
