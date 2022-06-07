@@ -1,11 +1,11 @@
 <template>
   <div class="tab-Info">
     <van-tabbar v-model="num" active-color="#1da4f2" inactive-color="#999" placeholder>
-      <van-tabbar-item v-for="(v, i) in urls" :key="i" @click="goToPage(v.url, i)">
-        <span v-text="v.name"></span>
+      <van-tabbar-item v-for="(item, index) in urls" :key="index" @click="goToPage(item.url, index)">
+        <span v-text="item.name"></span>
         <template #icon="props">
-          <img v-if="i == num" :src="require('../../../assets/img/tab_' + v.iconName + '_active.png')" />
-          <img v-else :src="require('../../../assets/img/tab_' + v.iconName + '.png')" />
+          <img v-if="index == num" :src="require('../../../assets/img/tab_' + item.iconName + '_active.png')" />
+          <img v-else :src="require('../../../assets/img/tab_' + item.iconName + '.png')" />
         </template>
       </van-tabbar-item>
       <!-- 更多菜单弹窗 -->
@@ -40,18 +40,16 @@ export default {
     }
   },
   mounted() {
-    let that = this
-    let v = this.active
-    this.urls.forEach(function (x, i) {
-      if (x.name == v) {
-        that.num = i
+    this.urls.forEach((item, index) => {
+      if (item.name == this.active) {
+        this.num = index
       }
     })
   },
   methods: {
-    goToPage(v) {
-      if (v) {
-        this.$router.push(v)
+    goToPage(url) {
+      if (url) {
+        this.$router.push(url)
       } else {
         this.moreMenuShow = !this.moreMenuShow
       }
