@@ -85,11 +85,6 @@ export default {
         .then(res => {
           if (res.data.Code === 0 && res.data.Rst_Data) {
             Toast('登录成功')
-
-            //写入token等等
-            setLocalStorage({
-              [constkey.Key_Auth]: res.data.Rst_Data.AccessToken
-            })
             sessionStorage.setItem('accessToken', res.data.Rst_Data.AccessToken)
             //更新vuex状态
             // 改变Vuex.state.tokenStatus的值

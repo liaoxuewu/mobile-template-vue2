@@ -23,7 +23,7 @@
     <div class="pops" v-if="menuShow">
       <div class="pop-bg" @click="menuShow = false"></div>
       <ul class="pop pop-menu" style="text-align: center">
-        <li @click="tabShow = true">切换科室</li>
+        <li @click="tabShow = true">切换</li>
         <li @click="clickPop">操作人</li>
       </ul>
     </div>
@@ -48,7 +48,6 @@
 </template>
 
 <script>
-import { Toast } from 'vant'
 import config from '../../../public/config'
 
 export default {
@@ -65,7 +64,6 @@ export default {
       },
       tabShow: false,
       isShowPersonInfo: false, // 操作人信息弹窗
-      activeName: '病历',
       areaList: [],
       dataList: [],
       imgIndex: 0
