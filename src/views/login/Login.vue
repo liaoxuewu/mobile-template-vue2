@@ -70,18 +70,12 @@ export default {
         })
         return false
       }
-      let wxUserId = sessionStorage.getItem('userId')
-      // wxUserId = '1000005'
 
       const baseParams = {
-        WxUserId: wxUserId,
-        hospcode: this.hospCode,
         userid: this.userName,
         password: this.password,
-        systype: config.sysType
       }
-      api.login
-        .BindCode({ params: baseParams })
+      api.login.login({ params: baseParams })
         .then(res => {
           if (res.data.Code === 0 && res.data.Rst_Data) {
             Toast('登录成功')
@@ -89,8 +83,7 @@ export default {
             //更新vuex状态
             // 改变Vuex.state.tokenStatus的值
             this.updateTokenStatus(true)
-
-            //跳转
+            // 跳转
             // that.routerRedirect();
             this.$router.push('/index/index')
           } else {
