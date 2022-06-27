@@ -5,10 +5,10 @@
       <div v-text="sysName"></div>
     </div>
     <div class="login-admin">
-      <div class="login-box">
+      <div class="login-item">
         <input type="text" v-model="userName" placeholder="请输入用户名" maxlength="16" />
       </div>
-      <div class="login-box">
+      <div class="login-item">
         <input :type="passwordType ? 'password' : 'text'" maxlength="24" v-model="password" placeholder="请输入密码" />
         <img src="../../assets/img/password_hide.png" v-if="passwordType" @click="passwordType = false" />
         <img src="../../assets/img/password_show.png" v-else @click="passwordType = true" />
@@ -79,8 +79,6 @@ export default {
         .then(res => {
           if (res.data.Code === 0 && res.data.Rst_Data) {
             Toast('登录成功')
-            sessionStorage.setItem('accessToken', res.data.Rst_Data.AccessToken)
-            //更新vuex状态
             // 改变Vuex.state.tokenStatus的值
             this.updateTokenStatus(true)
             // 跳转
@@ -133,7 +131,7 @@ export default {
   margin: 0 30px;
 }
 
-.login-box {
+.login-item {
   margin-bottom: 30px;
   border-bottom: 1px solid #ccc;
   height: 40px;
@@ -142,14 +140,14 @@ export default {
   padding-right: 40px;
 }
 
-.login-box input {
+.login-item input {
   height: 40px;
   line-height: 40px;
   background: transparent;
   color: #333;
 }
 
-.login-box img {
+.login-item img {
   position: absolute;
   top: 10px;
   right: 10px;

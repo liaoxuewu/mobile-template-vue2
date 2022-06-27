@@ -86,12 +86,6 @@ export default {
       } finally {
       }
     },
-    /**
-     * 验证token
-     */
-    verifyToken(newAgentId) {
-      let accessToken = sessionStorage.getItem('accessToken')
-    },
     selectArea() {},
     /**
      * 搜索函数
