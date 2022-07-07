@@ -21,7 +21,6 @@
 <script type="text/javascript">
 import { Toast } from 'vant'
 import api from '@/api/index'
-import { setLocalStorage } from '@/plugins/modules/local-storage'
 import { mapMutations } from 'vuex'
 
 export default {
@@ -75,7 +74,7 @@ export default {
         userid: this.userName,
         password: this.password,
       }
-      api.login.login({ params: baseParams })
+      api.login({ params: baseParams })
         .then(res => {
           if (res.data.Code === 0 && res.data.Rst_Data) {
             Toast('登录成功')
