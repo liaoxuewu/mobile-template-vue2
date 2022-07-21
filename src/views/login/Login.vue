@@ -21,7 +21,6 @@
 <script type="text/javascript">
 import { Toast } from 'vant'
 import api from '@/api/index'
-import { mapMutations } from 'vuex'
 
 export default {
   name: 'Login',
@@ -36,8 +35,6 @@ export default {
     }
   },
   methods: {
-    // 声明Vuex的mutations的方法
-    ...mapMutations(['updateTokenStatus']),
     /**
      * @description: 提交登录
      * @param {*}
@@ -78,8 +75,6 @@ export default {
         .then(res => {
           if (res.data.Code === 0 && res.data.Rst_Data) {
             Toast('登录成功')
-            // 改变Vuex.state.tokenStatus的值
-            this.updateTokenStatus(true)
             // 跳转
             // that.routerRedirect();
             this.$router.push('/index/index')
