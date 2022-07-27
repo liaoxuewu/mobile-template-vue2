@@ -54,7 +54,6 @@ import GEmpty from "../../components/base/empty";
 
 export default {
   name: 'index',
-  components: {GEmpty},
   data() {
     return {
       isShowLoading: false,
@@ -134,7 +133,7 @@ export default {
 }
 </script>
 
-<style type="text/css" scoped>
+<style lang="scss" scoped>
 .index-search {
   position: fixed;
   top: 0;
@@ -157,43 +156,39 @@ export default {
   overflow: auto;
   margin-top: 55px;
   padding: 0 5px 0 5px;
-}
-
-.index-content li {
-  float: left;
-  text-align: left;
-  width: calc(50% - 8px);
-  border-radius: 3px;
-  border: 1px solid #ccc;
-  margin: 0 0 5px 5px;
-  padding: 5px;
-  line-height: 20px;
-  font-size: 12px;
-}
-
-.index-content li p {
-  color: #454545;
+  li {
+    float: left;
+    text-align: left;
+    width: calc(50% - 8px);
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    margin: 0 0 5px 5px;
+    padding: 5px;
+    line-height: 20px;
+    font-size: 12px;
+    p {
+      color: #454545;
+    }
+  }
 }
 
 .pop-menu {
   top: 40px;
   right: 5px;
   width: 100px;
-}
-
-.pop-menu li {
-  line-height: 48px;
-  font-size: 16px;
-  color: #454545;
-  border-bottom: 1px solid #ccc;
-}
-
-.pop-menu li:nth-child(last) {
-  border-bottom: 0;
+  li {
+    line-height: 48px;
+    font-size: 16px;
+    color: #454545;
+    border-bottom: 1px solid #ccc;
+    &:nth-child(last) {
+      border-bottom: 0;
+    }
+  }
 }
 </style>
 
-<style type="text/css">
+<style>
 .index-search .van-search {
   padding: 3px 10px;
 }
