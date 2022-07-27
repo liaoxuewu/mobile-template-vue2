@@ -4,8 +4,8 @@
       <van-tabbar-item v-for="(item, index) in urls" :key="index" @click="goToPage(item.url, index)">
         <span v-text="item.name"></span>
         <template #icon="props">
-          <img v-if="index == num" :src="require('../../../assets/img/tab_' + item.iconName + '_active.png')" />
-          <img v-else :src="require('../../../assets/img/tab_' + item.iconName + '.png')" />
+          <img v-if="index == num" :src="require('../../../assets/images/tab_' + item.iconName + '_active.png')" />
+          <img v-else :src="require('../../../assets/images/tab_' + item.iconName + '.png')" />
         </template>
       </van-tabbar-item>
       <!-- 更多菜单弹窗 -->

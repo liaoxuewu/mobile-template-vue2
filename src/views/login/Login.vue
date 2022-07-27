@@ -10,8 +10,8 @@
       </div>
       <div class="login-item">
         <input :type="passwordType ? 'password' : 'text'" maxlength="24" v-model="password" placeholder="请输入密码" />
-        <img src="../../assets/img/password_hide.png" v-if="passwordType" @click="passwordType = false" />
-        <img src="../../assets/img/password_show.png" v-else @click="passwordType = true" />
+        <img src="../../assets/images/password_hide.png" v-if="passwordType" @click="passwordType = false" />
+        <img src="../../assets/images/password_show.png" v-else @click="passwordType = true" />
       </div>
       <van-button size="large" type="primary" :loading="isShowLoading" @click="loginSubmit">登录 </van-button>
     </div>

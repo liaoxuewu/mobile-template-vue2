@@ -12,13 +12,15 @@
       </div>
       <van-icon name="ellipsis" @click="menuShow = true" />
     </div>
-    <ul class="index-content" v-if="dataList.length">
-      <li v-for="(item, index) in dataList" :key="index" @click="goToDetail(item)">
-        <div>姓名：{{ item.name }}</div>
-        <div>年龄：{{ item.age }}</div>
-      </li>
-    </ul>
-    <div class="index-content" v-else style="text-align: center; font-size: 16px; margin-top: 30px">暂无数据</div>
+    <van-pull-refresh v-model="isShowLoading" @refresh="onRefresh" v-if="dataList.length">
+      <ul class="index-content">
+        <li v-for="(item, index) in dataList" :key="index" @click="goToDetail(item)">
+          <div>姓名：{{ item.name }}</div>
+          <div>年龄：{{ item.age }}</div>
+        </li>
+      </ul>
+    </van-pull-refresh>
+    <g-empty v-else style="margin-top: 50%"></g-empty>
     <!-- 菜单弹窗 -->
     <div class="pops" v-if="menuShow">
       <div class="pop-bg" @click="menuShow = false"></div>
@@ -43,15 +45,16 @@
       description="选择项目"
     />
     <van-loading type="spinner" class="van-loading-control" v-if="isShowLoading"></van-loading>
-    <g-tabbar :active="activeName"></g-tabbar>
   </div>
 </template>
 
 <script>
 import config from '../../../public/config'
+import GEmpty from "../../components/base/empty";
 
 export default {
   name: 'index',
+  components: {GEmpty},
   data() {
     return {
       isShowLoading: false,
@@ -78,12 +81,14 @@ export default {
      * 初始化
      */
     init() {
+      this.isShowLoading = true
       try {
         this.reset()
         this.getDataList()
       } catch (e) {
         console.log(e)
       } finally {
+        this.isShowLoading = false
       }
     },
     selectArea() {},
@@ -101,6 +106,14 @@ export default {
         { name: '曹操', age: 18 },
         { name: '刘备', age: 16 }
       ]
+    },
+    /**
+     * 刷新获取数据
+     */
+    onRefresh() {
+      setTimeout(() => {
+        this.init()
+      }, 1000)
     },
     clickPop() {
       this.isShowPersonInfo = true
