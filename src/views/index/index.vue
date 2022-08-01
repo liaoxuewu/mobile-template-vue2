@@ -49,8 +49,6 @@
 </template>
 
 <script>
-import config from '../../../public/config'
-import GEmpty from "../../components/base/empty";
 
 export default {
   name: 'index',
@@ -98,7 +96,8 @@ export default {
       const baseParams = {}
     },
     /**
-     * 获取数据
+     * @description: 获取数据
+     * @return list
      */
     getDataList() {
       this.dataList = [

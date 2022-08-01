@@ -8,7 +8,6 @@
 </template>
 
 <script>
-import config from "../../../public/config";
 
 export default {
   name: 'Detail',
@@ -38,6 +37,11 @@ export default {
         this.isShowLoading = false
       }
     },
+    /**
+     * @description: 获取数据
+     * @return list
+     */
+    getDataList() {},
     /**
      * 刷新获取数据
      */
