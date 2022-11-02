@@ -1,6 +1,6 @@
 {
   "name": "mobile-template-vue2",
-  "version": "0.1.0",
+  "version": "01.2022.110201",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",

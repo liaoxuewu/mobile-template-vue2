@@ -8,7 +8,7 @@
 </template>
 
 <script>
-
+import { Toast } from 'vant'
 export default {
   name: 'Detail',
   data() {
@@ -27,14 +27,19 @@ export default {
      * 初始化
      */
     init() {
-      this.isShowLoading = true
+      const _toast = Toast.loading({
+        duration: 0, // 持续展示 toast
+        message: '加载中...',
+        forbidClick: true,
+        loadingType: 'spinner'
+      })
       try {
         this.reset()
         this.getDataList()
       } catch (e) {
-        console.log(e)
+        Toast.fail(e)
       } finally {
-        this.isShowLoading = false
+        _toast.clear()
       }
     },
     /**

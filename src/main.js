@@ -21,6 +21,17 @@ Vue.use(preview, options)
 Vue.use(preview)
 Vue.config.productionTip = false
 
+// 检测版本变更
+const VUE_APP_VERSION = require('../package.json').version // 当前版本号
+const STORE_VERSION = window.localStorage.getItem('app_version') // 缓存的版本号
+console.log('版本号 new：' + VUE_APP_VERSION)
+console.log('版本号 old：' + STORE_VERSION)
+if (VUE_APP_VERSION !== STORE_VERSION) {
+  window.localStorage.clear()
+  window.localStorage.setItem('app_version', VUE_APP_VERSION)
+  window.location.reload(true)
+}
+
 new Vue({
   router,
   store,
