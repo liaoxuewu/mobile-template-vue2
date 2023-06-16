@@ -4,7 +4,8 @@ const config = {
   useConsole: true,
   baseUrl: '', // 本地调式
   appId: '',
-  sysName: ''
+  sysName: '',
+  hospitalId: 'B'
 }
 
-export default config
+// export default config

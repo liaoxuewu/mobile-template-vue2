@@ -1,11 +1,19 @@
 import Vue from 'vue'
-
 import Router from 'vue-router'
-
-import index from '@/views/index'
-import User from '@/views/user/User'
+import config from '../../public/config'
+// import indexA from './indexA'
+// import indexB from './indexB'
 
 Vue.use(Router)
+
+// const index = r => require.ensure([], () => r(require('@/views/index/index' + config.hospitalId)))
+// const detail = r => require.ensure([], () => r(require('@/views/detail/Detail' + config.hospitalId)))
+
+const index = r => require.ensure([], () => r(require('@/views/index/index')))
+const detail = r => require.ensure([], () => r(require('@/views/detail/Detail')))
+const router = 'index' + config.hospitalId
+console.log(router)
+// console.log(indexA)
 
 export default new Router({
   routes: [
@@ -25,28 +33,13 @@ export default new Router({
       component: () => import('@/views/login/Login')
     },
     {
-      path: '/detail/Detail',
-      components: {
-        default: () => import('@/views/detail/Detail')
-      },
-      name: 'Detail',
+      path: '/detail',
+      component: detail,
+      name: `Detail${config.hospitalId}`,
       meta: {
         keepAlive: false,
         showHeader: false,
         title: '详情',
-        noAuth: false
-      }
-    },
-    {
-      path: '/user/User',
-      components: {
-        default: () => import('@/views/user/User')
-      },
-      name: 'User',
-      meta: {
-        keepAlive: false,
-        showHeader: false,
-        title: '个人中心',
         noAuth: false
       }
     }

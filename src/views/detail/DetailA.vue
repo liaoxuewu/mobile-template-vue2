@@ -2,7 +2,7 @@
   <div>
     <van-nav-bar :title="titleName" left-arrow @click-left="goBack" fixed placeholder z-index="99999"> </van-nav-bar>
     <van-pull-refresh v-model="isShowLoading" @refresh="onRefresh" v-if="dataList.length">
-      <div>医院</div>
+      <div>医院A</div>
     </van-pull-refresh>
     <g-empty v-else></g-empty>
   </div>
@@ -11,7 +11,7 @@
 <script>
 import config from '../../../public/config'
 export default {
-  name: 'Detail',
+  name: 'DetailA',
   data() {
     return {
       titleName: '详情',

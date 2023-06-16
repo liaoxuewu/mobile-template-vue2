@@ -84,8 +84,8 @@ instance.interceptors.response.use(
 export const POST = ({ url, params = {}, data = {}, headers = {}, ...others }) =>
   instance({ url, method: 'POST', data, params, headers, ...others })
 
-export const GET = ({ url, params = {}, headers = {}, ...others }) =>
-  instance({ url, method: 'GET', params, headers, ...others })
+export const GET = ({ url, params = {}, data = {}, headers = {}, ...others }) =>
+  instance({ url, method: 'GET', data, params, headers, ...others })
 
 export const DELETE = ({ url, params = {}, data = {}, headers = {}, ...others }) =>
   instance({ url, method: 'DELETE', data, params, headers, ...others })
