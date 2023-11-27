@@ -188,7 +188,7 @@ export default {
     init() {
       this.isShowLoading = true
       try {
-        console.log(permissionPlane)
+        // console.log(permissionPlane)
         // this.exportEx()
         this.indexedDBFun()
         this.reset()
